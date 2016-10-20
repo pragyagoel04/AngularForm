@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validations Using AngularJS</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<div class="page">
+    <section class="card register" ng-app="myApp"
+        ng-controller="registerationController">
+        <!--novalidate is to make sure that the application is not using-->
+        <!--html form validations, instead using angular validations-->
+        <form name="myForm"
+              ng-submit="register()"
+              novalidate>
+
+            <div class="textIntro">
+                <h1>Form Validations</h1>
+                <p>Please fill the following form:</p>
+                <p>Hi, {{ user.firstName }}</p>
+                <p ng-show="message">{{ message }}</p>
+            </div>
+
+            <fieldset>
+                <legend>Basic Info:</legend>
+                <input type="text" name="firstName"
+                       placeholder="First Name"
+                       ng-model="user.firstName"
+                       ng-required="true">
+                <p class="error validationError" ng-show="myForm.firstName.$invalid && myForm.firstName.$touched">
+                    You must fill out your first name.
+                </p>
+                <br>
+                <input type="text"
+                       name="lastName"
+                       placeholder="Last Name"
+                       ng-model="user.lastName"
+                       ng-required="true">
+                <p class="error validationError" ng-show="myForm.lastName.$invalid && myForm.lastName.$touched">
+                    You must fill out your last name.
+                </p>
+                <br>
+                <input type="email"
+                       name="email"
+                       placeholder="Email"
+                       ng-model="user.email"
+                       ng-required="true">
+                <p class="error validationError" ng-show="myForm.email.$invalid && myForm.email.$touched">
+                    You must fill out your email.
+                </p>
+                <br>
+                <input type="password"
+                       name="password"
+                       placeholder="Password"
+                       ng-model="user.password"
+                       ng-minlength="6"
+                       ng-required="true">
+                <p class="error validationError" ng-show="myForm.password.$invalid && myForm.password.$touched">
+                    Password must be at least 6 characters.
+                </p>
+                <br>
+            </fieldset>
+            <br>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </section>
+</div>
+
+
+</body>
+</html>
